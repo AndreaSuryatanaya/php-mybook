@@ -9,7 +9,7 @@ try {
    mb.title, 
    mb.author, 
    mc.category_name 
-   FROM mybook mb INNER JOIN mybook_category mc ON mb.category_id = mc.id";
+   FROM mybook mb INNER JOIN mybook_category mc ON mb.category_id = mc.id ORDER BY mb.id DESC";
 
    $stmt = $pdo->query($sql);
    $books = $stmt->fetchAll();
@@ -40,6 +40,7 @@ try {
 
 <body>
    <h2>Data mybook from database</h2>
+   <a href="/create.php">Create new data</a>
    <table class="table">
       <thead>
          <tr>
