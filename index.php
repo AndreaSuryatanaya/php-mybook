@@ -39,29 +39,31 @@ try {
 </head>
 
 <body>
-   <h2>Data mybook from database</h2>
-   <a href="/create.php">Create new data</a>
-   <table class="table">
-      <thead>
-         <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Title</th>
-            <th scope="col">Author</th>
-            <th scope="col">Category</th>
-         </tr>
-      </thead>
-      <tbody>
-         <?php $no = 1; ?>
-         <?php foreach ($books as $book): ?>
+   <div class="container">
+      <h2>Data mybook from database</h2>
+      <a href="/create.php">Create new data</a>
+      <table class="table">
+         <thead>
             <tr>
-               <td><?= $no++ ?></td>
-               <td><?= $book['title'] ?></td>
-               <td><?= $book['author'] ?></td>
-               <td><?= $book['category_name'] ?></td>
+               <th scope="col">Id</th>
+               <th scope="col">Title</th>
+               <th scope="col">Author</th>
+               <th scope="col">Category</th>
             </tr>
-         <?php endforeach; ?>
-      </tbody>
-   </table>
+         </thead>
+         <tbody>
+            <?php $no = 1; ?>
+            <?php foreach ($books as $book): ?>
+               <tr>
+                  <td><?= $no++ ?></td>
+                  <td><?= $book['title'] ?></td>
+                  <td><?= $book['author'] ?></td>
+                  <td><?= $book['category_name'] ?></td>
+               </tr>
+            <?php endforeach; ?>
+         </tbody>
+      </table>
+   </div>
 </body>
 
 </html>
