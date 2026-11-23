@@ -88,30 +88,36 @@ if (isset($_POST['save']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-   <h2>Create data mybook</h2>
+   <div class="container py-5">
+      <h2>Create data mybook</h2>
 
-   <!-- ERROR MESSAGE -->
-   <?php if (!empty($errorMessage)): ?>
-      <div style="padding: 10px 14px; margin-bottom: 16px; background-color: #fde8e8; color: #9b1c1c; border: 1px solid #f8b4b4; border-radius: 4px;">
-         <?= htmlspecialchars($errorMessage, ENT_QUOTES, 'UTF-8') ?>
-      </div>
-   <?php endif; ?>
+      <!-- ERROR MESSAGE -->
+      <?php if (!empty($errorMessage)): ?>
+         <div style="padding: 10px 14px; margin-bottom: 16px; background-color: #fde8e8; color: #9b1c1c; border: 1px solid #f8b4b4; border-radius: 4px;">
+            <?= htmlspecialchars($errorMessage, ENT_QUOTES, 'UTF-8') ?>
+         </div>
+      <?php endif; ?>
 
-   <form action="" method="POST">
-      <input type="text" name="title" placeholder="title">
-      <input type="text" name="author" placeholder="author">
+      <form action="" method="POST" class="">
+         <div class="d-flex flex-column gap-3 w-25">
 
-      <select name="category_id">
-         <option value="">-- Pilih Kategori --</option>
-         <?php foreach ($categories as $category): ?>
-            <option value="<?= htmlspecialchars((string) $category['id'], ENT_QUOTES, 'UTF-8') ?>">
-               <?= htmlspecialchars($category['category_name'] ?? 'Tanpa Nama', ENT_QUOTES, 'UTF-8') ?>
-            </option>
-         <?php endforeach; ?>
-      </select>
+            <input type="text" name="title" placeholder="title">
+            <input type="text" name="author" placeholder="author">
 
-      <button name="save">Save</button>
-   </form>
+            <select name="category_id">
+               <option value="">-- Pilih Kategori --</option>
+               <?php foreach ($categories as $category): ?>
+                  <option value="<?= htmlspecialchars((string) $category['id'], ENT_QUOTES, 'UTF-8') ?>">
+                     <?= htmlspecialchars($category['category_name'] ?? 'Tanpa Nama', ENT_QUOTES, 'UTF-8') ?>
+                  </option>
+               <?php endforeach; ?>
+            </select>
+
+            <button name="save">Save</button>
+         </div>
+
+      </form>
+   </div>
 
 </body>
 
