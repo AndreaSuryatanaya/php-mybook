@@ -37,7 +37,7 @@ try {
 
    $pdo = new PDO($dsn, $user, $pass, $options);
 
-   echo "Koneksi berhasil!"; // Aktifkan sementara hanya untuk tes
+   // echo "Koneksi berhasil!"; // Aktifkan sementara hanya untuk tes
 
 } catch (PDOException $e) {
    // Jangan tampilkan detail error sensitif ke user di production
