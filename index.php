@@ -49,6 +49,7 @@ try {
                <th scope="col">Title</th>
                <th scope="col">Author</th>
                <th scope="col">Category</th>
+               <th scope="col">Action</th>
             </tr>
          </thead>
          <tbody>
@@ -59,6 +60,7 @@ try {
                   <td><?= $book['title'] ?></td>
                   <td><?= $book['author'] ?></td>
                   <td><?= $book['category_name'] ?></td>
+                  <td><a href="/update.php?id=<?= $book['id'] ?>">Edit</a></td>
                </tr>
             <?php endforeach; ?>
          </tbody>
