@@ -88,8 +88,7 @@ if (isset($_POST['save']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-   <div class="container py-5">
-      <h2>Create data mybook</h2>
+   <div class="container py-5 min-vh-100 d-flex flex-column justify-content-center">
 
       <!-- ERROR MESSAGE -->
       <?php if (!empty($errorMessage)): ?>
@@ -97,14 +96,18 @@ if (isset($_POST['save']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
             <?= htmlspecialchars($errorMessage, ENT_QUOTES, 'UTF-8') ?>
          </div>
       <?php endif; ?>
-
+      <h2>Create data mybook</h2>
       <form action="" method="POST" class="">
          <div class="d-flex flex-column gap-3 w-25">
 
-            <input type="text" name="title" placeholder="title">
-            <input type="text" name="author" placeholder="author">
+            <!-- <input type="text" name="title" placeholder="title"> -->
+            <label for="title" class="form-label">Title book</label>
+            <input type="text" class="form-control" id="title" name="title">
+            <!-- <input type="text" name="author" placeholder="author"> -->
+            <label for="author" class="form-label">Author</label>
+            <input type="text" class="form-control" id="author" name="author">
 
-            <select name="category_id">
+            <select name="category_id" class="form-control">
                <option value="">-- Pilih Kategori --</option>
                <?php foreach ($categories as $category): ?>
                   <option value="<?= htmlspecialchars((string) $category['id'], ENT_QUOTES, 'UTF-8') ?>">
@@ -113,7 +116,7 @@ if (isset($_POST['save']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
                <?php endforeach; ?>
             </select>
 
-            <button name="save">Save</button>
+            <button name="save" class="btn-solid theme-accent">Save</button>
          </div>
 
       </form>

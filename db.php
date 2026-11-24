@@ -1,6 +1,9 @@
 <?php
 
-// kita pakai PDO buatk koneksi ke DB
+// Andrea Suryatanaya, S.T
+// Software Engineering (PHP - Database)
+
+// kita pakai PDO buat koneksi ke DB
 
 $host = 'localhost'; // atau 'localhost'
 $db   = 'learned'; // ganti dengan nama database tempat mybook berada

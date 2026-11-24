@@ -40,11 +40,11 @@ try {
 
 <body>
    <div class="container">
-      <h2>Data mybook from database</h2>
+      <h2 class="mt-8">Data mybook from database</h2>
       <a href="/create.php">Create new data</a>
-      <table class="table">
+      <table class="table table-hover mt-8">
          <thead>
-            <tr>
+            <tr class="theme-accent">
                <th scope="col">Id</th>
                <th scope="col">Title</th>
                <th scope="col">Author</th>
