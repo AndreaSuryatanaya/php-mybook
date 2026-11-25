@@ -2,8 +2,35 @@
 
 require_once "./db.php";
 
-try {
-   $sql = "
+$keyword = trim($_GET['q'] ?? '');
+
+
+// Logic = kalo keyword nya ada tampilkan query berdasarkan keyword
+//  kalo keyword ga ada tampilkan semua data
+
+if ($keyword !== '') {
+   try {
+      $searchTerm = '%' . $keyword . '%';
+      $stmt = $pdo->prepare(
+         'SELECT mb.id, 
+       mb.title, 
+       mb.author, 
+       mc.category_name 
+     FROM mybook mb INNER JOIN mybook_category mc ON mb.category_id = mc.id
+     WHERE mb.title LIKE :kw_title OR mb.author LIKE :kw_author OR mc.category_name LIKE :kw_category'
+      );
+      $stmt->execute([
+         'kw_title'  => $searchTerm,
+         'kw_author' => $searchTerm,
+         'kw_category' => $searchTerm,
+      ]);
+      $books = $stmt->fetchAll();
+   } catch (PDOException $e) {
+      echo "Failed get data from database";
+   }
+} else {
+   try {
+      $sql = "
    SELECT 
    mb.id, 
    mb.title, 
@@ -11,16 +38,20 @@ try {
    mc.category_name 
    FROM mybook mb INNER JOIN mybook_category mc ON mb.category_id = mc.id ORDER BY mb.id DESC";
 
-   $stmt = $pdo->query($sql);
-   $books = $stmt->fetchAll();
+      $stmt = $pdo->query($sql);
+      $books = $stmt->fetchAll();
 
-   // echo '<pre>';
-   // var_dump($books);
-   // echo '</pre>';
-} catch (PDOException $e) {
-   error_log('Gagal mengambil data buku: ' . $e->getMessage());
-   die('Terjadi kesalahan saat memuat data buku.');
+      // echo '<pre>';
+      // var_dump($books);
+      // echo '</pre>';
+   } catch (PDOException $e) {
+      error_log('Gagal mengambil data buku: ' . $e->getMessage());
+      die('Terjadi kesalahan saat memuat data buku.');
+   }
 }
+
+
+
 
 // PERULANGAN
 // foreach
@@ -42,6 +73,14 @@ try {
    <div class="container">
       <h2 class="mt-8">Data mybook from database</h2>
       <a href="/create.php">Create new data</a>
+
+      <!-- Fitur Search -->
+      <form action="" method="GET" class="d-flex mt-8 gap-2">
+         <input type="text" name="q" value="<?= htmlspecialchars($_GET['q'] ?? '', ENT_QUOTES, 'UTF-8') ?>" class="form-control w-25" placeholder="Search book ...">
+         <button type="submit" class="btn-solid theme-accent">Search</button>
+      </form>
+
+
       <table class="table table-hover mt-8">
          <thead>
             <tr class="theme-accent">
